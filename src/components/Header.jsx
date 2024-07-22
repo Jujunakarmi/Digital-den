@@ -1,13 +1,45 @@
 import React from 'react'
 
+import { IoMdSearch } from "react-icons/io";
+import { FaRegUserCircle } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
+
+
+
 
 const Header = () => {
   return (
-<div>
-Header
-</div>
+    <header className="h-16 shadow-md ">
+      <div className=" h-full flex items-center px-5 container mx-auto justify-between">
+        <div>
+          DigitalDen
+        </div>
 
- 
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm  ">
+          <input type="text" placeholder="  Search products" className="w-full h-8 rounded-2xl outline-none pl-2 focus-within:shadow-md" />
+          <div className="bg-yellow-300 rounded-2xl hover:text-white cursor-pointer">
+            <IoMdSearch size="1.5em" /></div>
+        </div>
+
+        <div className="flex items-center gap-7 cursor-pointer">
+          <div>
+            <FaRegUserCircle size="2em" />
+          </div>
+
+          <div className="relative">
+            <span><TiShoppingCart size="2em" /></span>
+            <div>
+              <p className="text-sm bg-red-500 text-white w-5 flex items-center justify-center rounded-full absolute top-6 left-6">0</p>
+            </div>
+
+          </div>
+         <button className="bg-yellow-300 p-2 rounded-3xl hover:text-white">Login</button>
+
+        </div>
+      </div>
+    </header>
+
+
   )
 }
 
