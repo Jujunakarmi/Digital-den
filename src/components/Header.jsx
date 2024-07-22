@@ -1,10 +1,13 @@
 import React from 'react'
 
+
 const Header = () => {
   return (
-    <div>
-      MERN
-    </div>
+<div>
+Header
+</div>
+
+ 
   )
 }
 
