@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
 import { IoMdSearch } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -9,10 +9,12 @@ import { TiShoppingCart } from "react-icons/ti";
 
 const Header = () => {
   return (
-    <header className="h-16 shadow-md ">
+    <header className="h-16 shadow-md bg-white">
       <div className=" h-full flex items-center px-5 container mx-auto justify-between">
         <div>
+        <Link to="/">
           DigitalDen
+          </Link>
         </div>
 
         <div className="hidden lg:flex items-center w-full justify-between max-w-sm  ">
@@ -33,7 +35,8 @@ const Header = () => {
             </div>
 
           </div>
-         <button className="bg-yellow-300 p-2 rounded-3xl hover:text-white">Login</button>
+          <Link to="login">
+         <button className="bg-yellow-300 px-5 py-1 rounded-3xl hover:text-white">Login</button></Link>
 
         </div>
       </div>
