@@ -1,9 +1,31 @@
 import {useState} from 'react'
+import{ Link} from "react-router-dom"
 import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
+
 
 const Login = () => {
   const[showPassword, setShowPassword] =useState(false)
+  const [data, setData]= useState({
+    email:"",
+    password:""
+  })
+
+  const handleonChange =(e) =>{
+     const {name, value} =e.target
+     setData ((prev) => {
+      return {
+        ...prev,
+         [name] : value
+
+      }
+    })
+    console.log(data)
+ }
+ const handleSubmit = (e) => {
+e.preventDefault()
+ }
 
     return (
         <section id="login">
@@ -14,28 +36,46 @@ const Login = () => {
                         <img src={userIcon}  alt="userlogo"></img>
                     </div>
 
-                  <form className='grid'>
+                  <form className='grid' onSubmit={handleSubmit}>
                     <div>
                     <label>Email: </label>
                     <div >
-                    <input type ="text" placeholder='Enter Email' className='w-full h-8 outline-none bg-slate-200 p-2'></input>
+                    <input 
+                    type ="email" 
+                    placeholder='Enter Email' 
+                    name='email'
+                    // value= {data.email}
+                    onChange={handleonChange}
+                    className='w-full h-8 outline-none bg-slate-200 p-2'>
+
+                    </input>
                     </div>
                     </div>
 
                     <div >
                     <label>Password: </label>
                     <div className='bg-slate-200 flex'>
-                    <input type ="password" placeholder='Enter your password'className='w-full h-full outline-none bg-slate-200 p-2'></input>
-                    <div className='cursor-pointer'>
-                    <FaEye />
-                        
+                    <input type ={showPassword ? "text" : "password"}
+                     placeholder='Enter your password'
+                     name="password"
+                    //  value={data.password}
+                     onChange={handleonChange}
+                     className='w-full h-full outline-none bg-slate-200 p-2'>
+
+                     </input>
+                    <div className='cursor-pointer' onClick={() => setShowPassword((prev) =>!prev)}>
+                 
+                    {showPassword ? (<FaEyeSlash />) : (<FaEye />)}
+                 
                     </div>
                     </div>
+                  <Link to="/forgot-password" className='block w-fit ml-auto hover:text-blue-400'>Forgot Password ?</Link>
                     </div>
                   
-                    <button>Login</button>
+                    <button type ="submit" className='bg-yellow-400 mt-5 px-6 py-2 w-full max-w-[150px] rounded-md hover:scale-110 transition-all mx-auto'>Login</button>
                     
                   </form>
+                  <p className='mx-20 my-5'>Dont' have an account? <Link to ="/sign-up" className="hover:underline text-blue-400">Sign up</Link></p>
 
 
                 </div>

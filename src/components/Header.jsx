@@ -31,7 +31,7 @@ const Header = () => {
           <div className="relative">
             <span><TiShoppingCart size="2em" /></span>
             <div>
-              <p className="text-sm bg-red-500 text-white w-5 flex items-center justify-center rounded-full absolute top-6 left-6">0</p>
+              <p className="text-sm bg-yellow-300 text-black w-5 flex items-center justify-center rounded-full absolute top-6 left-6">0</p>
             </div>
 
           </div>
