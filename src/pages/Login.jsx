@@ -29,9 +29,9 @@ e.preventDefault()
 
     return (
         <section id="login">
-            <div className='container mx-auto p-4'>
+            <div className='container mx-auto p-4 mt-20'>
 
-                <div className='bg-white p-2 py-5 w-full max-w-md mx-auto rounded-md'>
+                <div className='bg-white p-5 w-full max-w-md mx-auto rounded-md'>
                     <div className='mx-auto h-20 w-20'>
                         <img src={userIcon}  alt="userlogo"></img>
                     </div>

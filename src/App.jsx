@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className='min-h-[calc(100vh-150px)] '>
       <Outlet />
       </main>
       <Footer/>
