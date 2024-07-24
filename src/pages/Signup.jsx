@@ -14,6 +14,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
     profilePic: "",
+    name:""
   })
 
   const handleonChange = (e) => {
@@ -22,11 +23,10 @@ const Signup = () => {
       return {
         ...prev,
         [name]: value
-
       }
     })
    }
-  // console.log(data)
+ console.log(data)
 
   const handlePic = async (e) => {
     const file = e.target.files[0]
@@ -68,25 +68,25 @@ const Signup = () => {
 
           </div>
 
-
+          <form className='grid' onSubmit={handleSubmit}>
           <div>
             <label>Name: </label>
-            <div >
+            <div>
               <input
                 type="text"
                 placeholder='Enter your name'
                 name='name'
-                // value= {data.email}
+                value= {data.name}
                 onChange={handleonChange}
-                className='w-full h-8 outline-none bg-slate-200 p-2'>
-
-              </input>
+                required
+                className='w-full h-8 outline-none bg-slate-200 p-2' />
+                
             </div>
           </div>
 
 
 
-          <form className='grid' onSubmit={handleSubmit}>
+         
             <div>
               <label>Email: </label>
               <div >
@@ -94,11 +94,11 @@ const Signup = () => {
                   type="email"
                   placeholder='Enter Email'
                   name='email'
-                  // value= {data.email}
+                  value= {data.email}
                   onChange={handleonChange}
-                  className='w-full h-8 outline-none bg-slate-200 p-2'>
+                  required
+                  className='w-full h-8 outline-none bg-slate-200 p-2' />
 
-                </input>
               </div>
             </div>
 
@@ -108,11 +108,12 @@ const Signup = () => {
                 <input type={showPassword ? "text" : "password"}
                   placeholder='Enter your password'
                   name="password"
-                  //  value={data.password}
+                   value={data.password}
                   onChange={handleonChange}
-                  className='w-full h-full outline-none bg-slate-200 p-2'>
+                  required
+                  className='w-full h-full outline-none bg-slate-200 p-2'/>
 
-                </input>
+         
                 <div className='cursor-pointer' onClick={() => setShowPassword((prev) => !prev)}>
 
                   {showPassword ? (<FaEyeSlash />) : (<FaEye />)}
@@ -127,11 +128,12 @@ const Signup = () => {
                 <input type={showConfirmPassword ? "text" : "password"}
                   placeholder='Enter your confirm password'
                   name="confirmPassword"
-                  //  value={data.confirmPassword}
+                   value={data.confirmPassword}
                   onChange={handleonChange}
-                  className='w-full h-full outline-none bg-slate-200 p-2'>
+                  required
+                  className='w-full h-full outline-none bg-slate-200 p-2' />
 
-                </input>
+          
                 <div className='cursor-pointer' onClick={() => setShowConfirmPassword((prev) => !prev)}>
 
                   {showConfirmPassword ? (<FaEyeSlash />) : (<FaEye />)}
