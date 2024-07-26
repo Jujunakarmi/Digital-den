@@ -4,12 +4,14 @@ import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import imageTobase64 from '../helper/imageTobase64'
+import { createUser } from '../utils/API';
 
 const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [data, setData] = useState({
+    //Saving user information in data variable
     email: "",
     password: "",
     confirmPassword: "",
@@ -43,9 +45,35 @@ const Signup = () => {
 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-  }
+// Check password and confirmation matches
+    if(data.password === data.confirmPassword){
+
+      //Get the data from state variable(data) and creating user
+      try {
+        const response = await createUser(data);
+    
+        if (!response.ok) {
+          throw new Error('something went wrong!');
+        }
+    
+        const user = await response.json();
+        console.log("User created successfully",user);
+    
+      } catch (err) {
+        console.error(err);
+        
+      }
+      }else{
+        console.log("Password and confirmation password isn't matching. Try again.")
+      
+      }
+
+    }
+
+  
+
   return (
     <section id="signup">
       <div className='container mx-auto p-4 mt-20'>
