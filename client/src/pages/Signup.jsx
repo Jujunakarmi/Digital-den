@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
+import toast from "react-hot-toast"
+
+
 import imageTobase64 from '../helper/imageTobase64'
 import { createUser } from '../utils/API';
 
@@ -59,10 +62,11 @@ const Signup = () => {
         }
     
         const user = await response.json();
+        toast.success('User created successfully');
         console.log("User created successfully",user);
-    
+
       } catch (err) {
-        console.error(err);
+        toast.error(err);
         
       }
       }else{
