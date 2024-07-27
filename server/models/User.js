@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose")
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
     {
@@ -26,6 +27,7 @@ const userSchema = new Schema(
         timestamps: true,
     }
 )
+
 
 
 const userModel = model("user", userSchema)

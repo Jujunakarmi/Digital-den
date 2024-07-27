@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
@@ -22,6 +22,7 @@ const Signup = () => {
     name:""
   })
 
+  const navigate = useNavigate() 
   const handleonChange = (e) => {
     const { name, value } = e.target
     setData((prev) => {
@@ -62,7 +63,16 @@ const Signup = () => {
         }
     
         const user = await response.json();
-        toast.success('User created successfully');
+
+        if(user){
+          toast.success('User created successfully');
+          navigate('/login')
+        }
+
+        if(!user){
+          toast.error('User not created.Something went wrong');
+        }
+      
         console.log("User created successfully",user);
 
       } catch (err) {

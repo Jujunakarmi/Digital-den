@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
+import { login } from '../utils/API'
+import toast from "react-hot-toast"
+
 
 
 const Login = () => {
@@ -22,8 +25,17 @@ const Login = () => {
     })
   }
   console.log(data)
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await login(data)
+    const user = await response.json();
+
+    if(user){
+      toast.success("Login Successful")
+    }else{
+      toast.error("Login Failed")
+    }
   }
 
   return (
