@@ -1,6 +1,6 @@
 //Fetching data from backend api/users
-export const createUser =(userData) => {
-return fetch('http://localhost:3001/api/users', {
+export const signUp =(userData) => {
+return fetch('http://localhost:3001/api/signup', {
     method: 'POST',
     headers: {
         'Content-Type':'application/json',
@@ -8,8 +8,8 @@ return fetch('http://localhost:3001/api/users', {
     body: JSON.stringify(userData)
 });
 };
-export const login =(userData) => {
-return fetch('http://localhost:3001/api/users/login', {
+export const signIn =(userData) => {
+return fetch('http://localhost:3001/api/signin', {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -18,4 +18,3 @@ return fetch('http://localhost:3001/api/users/login', {
     body: JSON.stringify(userData)
 });
 };
-

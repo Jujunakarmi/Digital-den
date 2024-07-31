@@ -1,9 +1,22 @@
+const express = require('express')
 
-const router = require ('express').Router()
-const apiRoutes= require('./api')
+const router = express.Router()
 
-router.use('/api',apiRoutes)
+const userSignUpController = require('../controller/user/userSignup')
+const userSignInController = require('../controller/user/userSignin')
 
-router.use((req, res) => res.send("Wrong route!"));
 
-module.exports = router;
+
+router.post("/signup",userSignUpController)
+router.post("/signin",userSignInController)
+
+
+
+
+
+
+
+
+
+
+module.exports = router

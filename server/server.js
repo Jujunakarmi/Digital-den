@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = 3001 || process.env.PORT;
 
-app.use(routes)
+app.use('/api',routes)
 
 connectDB().then(() => {
     app.listen(PORT, () => {

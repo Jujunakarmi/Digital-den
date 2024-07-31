@@ -7,7 +7,7 @@ import toast from "react-hot-toast"
 
 
 import imageTobase64 from '../helper/imageTobase64'
-import { createUser } from '../utils/API';
+import { signUp } from '../utils/API';
 
 const Signup = () => {
 
@@ -56,7 +56,7 @@ const Signup = () => {
 
       //Get the data from state variable(data) and creating user
       try {
-        const response = await createUser(data);
+        const response = await signUp(data);
     
         if (!response.ok) {
           throw new Error('something went wrong!');

@@ -1,11 +1,10 @@
 import React,{ useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 import userIcon from '../assets/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
-import { login } from '../utils/API'
+import { signIn } from '../utils/API';
 import toast from "react-hot-toast"
-
 
 
 const Login = () => {
@@ -14,6 +13,8 @@ const Login = () => {
     email: "",
     password: ""
   });
+
+  const navigate = useNavigate() 
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
@@ -28,11 +29,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await login(data)
+    const response = await signIn(data)
     const user = await response.json();
 
     if(user){
       toast.success("Login Successful")
+      navigate("/")
     }else{
       toast.error("Login Failed")
     }
