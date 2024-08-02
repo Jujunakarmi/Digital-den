@@ -18,3 +18,13 @@ return fetch('http://localhost:3001/api/signin', {
     body: JSON.stringify(userData)
 });
 };
+export const userDetails =(userData) => {
+return fetch('http://localhost:3001/api/user-details', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify(userData)
+});
+};
