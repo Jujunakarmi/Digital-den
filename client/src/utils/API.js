@@ -28,3 +28,13 @@ return fetch('http://localhost:3001/api/user-details', {
     body: JSON.stringify(userData)
 });
 };
+export const userLogoutController =() => {
+return fetch('http://localhost:3001/api//logout', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify()
+});
+};

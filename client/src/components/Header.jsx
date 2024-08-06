@@ -1,22 +1,42 @@
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast"
 
 import { IoMdSearch } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { userLogoutController } from "../utils/API";
+import { setUserDetails } from "../store/userSlice";
 
 
 
 
 const Header = () => {
-  const user =useSelector((state) => state?.user.user)
+  const user = useSelector((state) => state?.user.user)
+const dispatch = useDispatch()
+
   console.log("user-header", user)
+
+  const handleLogout = async () => {
+    const dataApi = await userLogoutController()
+
+     const dataResponse = await dataApi.json();
+
+    if (dataResponse.success) {
+      toast.success(dataResponse.message)
+      dispatch(setUserDetails(null))
+    }
+    if (dataResponse.error) {
+      toast.error(dataResponse.message)
+    }
+  }
   return (
     <header className="h-16 shadow-md bg-white">
       <div className=" h-full flex items-center px-5 container mx-auto justify-between">
         <div>
-        <Link to="/">
-          DigitalDen
+          <Link to="/">
+            DigitalDen
           </Link>
         </div>
 
@@ -31,12 +51,12 @@ const Header = () => {
             {
               user?.profilePic ? (
                 <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
-              ):
-              (
-                <FaRegUserCircle size="2em" />
-              )
+              ) :
+                (
+                  <FaRegUserCircle size="2em" />
+                )
             }
-       
+
           </div>
 
           <div className="relative">
@@ -46,8 +66,16 @@ const Header = () => {
             </div>
 
           </div>
-          <Link to="login">
-         <button className="bg-yellow-300 px-5 py-1 rounded-3xl hover:text-white">Login</button></Link>
+          {
+            user?._id ? (
+              <button onClick={handleLogout} className="bg-yellow-300 px-5 py-1 rounded-3xl hover:text-white" >Logout</button>
+            ) :
+              (
+                <Link to="login">
+                  <button className="bg-yellow-300 px-5 py-1 rounded-3xl hover:text-white">Login</button></Link>
+              )
+          }
+
 
         </div>
       </div>
