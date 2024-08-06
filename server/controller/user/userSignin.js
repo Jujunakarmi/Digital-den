@@ -21,7 +21,7 @@ async function userSignInController(req, res) {
             _id: user._id,
             email: user.email
           };
-          const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: '1h' });
+          const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: '8h' });
     
           // Save token in cookie
           res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
