@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast"
+import { useState } from "react";
 
 import { IoMdSearch } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -14,14 +15,16 @@ import { setUserDetails } from "../store/userSlice";
 
 const Header = () => {
   const user = useSelector((state) => state?.user.user)
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
+  const [menuDisplay, setMenuDisplay] = useState(false)
 
   console.log("user-header", user)
 
   const handleLogout = async () => {
     const dataApi = await userLogoutController()
 
-     const dataResponse = await dataApi.json();
+    const dataResponse = await dataApi.json();
 
     if (dataResponse.success) {
       toast.success(dataResponse.message)
@@ -47,17 +50,34 @@ const dispatch = useDispatch()
         </div>
 
         <div className="flex items-center gap-7 cursor-pointer">
-          <div>
+
+          <div className="relative  flex justify-center " onClick={() => setMenuDisplay(prev => !prev)}>
+
+            <div>
+              {
+                user?.profilePic ? (
+                  <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
+                ) :
+                  (
+                    <FaRegUserCircle size="2em" />
+                  )
+              }
+            </div>
+
             {
-              user?.profilePic ? (
-                <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
-              ) :
-                (
-                  <FaRegUserCircle size="2em" />
-                )
+              menuDisplay && (
+                <div className="absolute bg-white top-11 bottom-0 h-fit p-1 shadow-lg rounnded">
+
+                  {<nav>
+                    <Link className="whitespace-nowrap hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
+                  </nav>}
+
+                </div>
+              )
             }
 
           </div>
+
 
           <div className="relative">
             <span><TiShoppingCart size="2em" /></span>

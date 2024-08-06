@@ -9,6 +9,7 @@ import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import ForgotPass from './pages/ForgotPass.jsx'
 import Signup from './pages/Signup.jsx'
+import AdminPanel from './pages/AdminPanel.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,13 @@ const router = createBrowserRouter([
     {
       path:"/sign-up",
       element:<Signup/>
-    }
+    },
+    
+    {
+      path:"/admin-panel",
+      element:<AdminPanel/>
+    },
+
     ]
   }
 ])
