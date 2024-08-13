@@ -69,7 +69,7 @@ const Header = () => {
                 <div className="absolute bg-white top-11 bottom-0 h-fit p-1 shadow-lg rounnded">
 
                   {<nav>
-                    <Link className="whitespace-nowrap hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
+                    <Link className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
                   </nav>}
 
                 </div>
