@@ -7,7 +7,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 
-import { userLogoutController } from "../utils/API";
+import { userLogout } from "../utils/API";
 import { setUserDetails } from "../store/userSlice";
 
 
@@ -19,10 +19,10 @@ const Header = () => {
 
   const [menuDisplay, setMenuDisplay] = useState(false)
 
-  console.log("user-header", user)
+  // console.log("user-header", user)
 
   const handleLogout = async () => {
-    const dataApi = await userLogoutController()
+    const dataApi = await userLogout();
 
     const dataResponse = await dataApi.json();
 
@@ -69,7 +69,7 @@ const Header = () => {
                 <div className="absolute bg-white top-11 bottom-0 h-fit p-1 shadow-lg rounnded">
 
                   {<nav>
-                    <Link className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
+                    <Link className=" hidden whitespace-nowrap  md:block hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
                   </nav>}
 
                 </div>

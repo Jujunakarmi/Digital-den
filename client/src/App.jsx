@@ -24,7 +24,7 @@ if (dataApi.success){
   dispatch(setUserDetails(dataApi.data))
 }
 
-console.log("datauser",dataApi)
+// console.log("datauser",dataApi)
   }
   useEffect(() => {
    //user Details
