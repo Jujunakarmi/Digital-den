@@ -3,6 +3,7 @@ import moment from 'moment'
 import { getAllUsers } from '../utils/API';
 import { toast } from 'react-hot-toast';
 import { MdEdit } from "react-icons/md";
+import ChangeUserRole from '../components/ChangeUserRole';
 
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -61,6 +62,7 @@ const AllUsers = () => {
        } 
         </tbody>
       </table>
+      <ChangeUserRole />
     </div>
   )
 }
