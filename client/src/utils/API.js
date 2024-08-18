@@ -48,3 +48,14 @@ return fetch('http://localhost:3001/api/all-users', {
     body: JSON.stringify()
 });
 };
+export const updateUser =(data) => {
+return fetch('http://localhost:3001/api//update-user', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify(data)
+});
+};
+

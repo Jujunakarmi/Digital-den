@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { userLogout } from "../utils/API";
 import { setUserDetails } from "../store/userSlice";
+import roles from "../utils/roles";
 
 
 
@@ -51,9 +52,8 @@ const Header = () => {
 
         <div className="flex items-center gap-7 cursor-pointer">
 
-          <div className="relative  flex justify-center " onClick={() => setMenuDisplay(prev => !prev)}>
 
-            <div>
+          <div className="relative  flex justify-center " onClick={() => setMenuDisplay(prev => !prev)}>
               {
                 user?.profilePic ? (
                   <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
@@ -62,15 +62,20 @@ const Header = () => {
                     <FaRegUserCircle size="2em" />
                   )
               }
-            </div>
+           
 
             {
               menuDisplay && (
                 <div className="absolute bg-white top-11 bottom-0 h-fit p-1 shadow-lg rounnded">
 
-                  {<nav>
-                    <Link className=" hidden whitespace-nowrap  md:block hover:bg-slate-100 p-2" to={"admin-panel"}>Admin Panel</Link>
-                  </nav>}
+                  <nav>
+                    {
+                      user?.role === roles.ADMIN && (
+<Link to={"admin-panel"} className=" hidden whitespace-nowrap  md:block hover:bg-slate-100 p-2" >Admin Panel</Link>
+                      )
+                    }
+                    
+                  </nav>
 
                 </div>
               )

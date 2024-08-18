@@ -76,11 +76,11 @@ const Signup = () => {
         console.log("User created successfully",user);
 
       } catch (err) {
-        toast.error(err);
+    
         
       }
       }else{
-        console.log("Password and confirmation password isn't matching. Try again.")
+        toast.error("Password and confirmation password does. Try again.")
       
       }
 

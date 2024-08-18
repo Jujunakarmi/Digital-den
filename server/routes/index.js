@@ -8,6 +8,7 @@ const userDetailsController = require('../controller/user/userDetails')
 const authToken = require('../middleware/authToken')
 const userLogoutController = require('../controller/user/userLogout')
 const allUsersController = require('../controller/user/allUsers')
+const updateUser = require('../controller/user/updateUser')
 
 
 router.post("/signup",userSignUpController)
@@ -17,6 +18,8 @@ router.get("/logout", userLogoutController)
 
 //Admin Panel
 router.get("/all-users", authToken, allUsersController)
+router.post("/update-user", authToken, updateUser)
+
 
 
 

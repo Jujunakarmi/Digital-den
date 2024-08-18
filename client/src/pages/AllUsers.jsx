@@ -7,6 +7,13 @@ import ChangeUserRole from '../components/ChangeUserRole';
 
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
+  const [openUpdateRole, setopenUpedateRole]= useState(false)
+  const[updateUserDetails, setUpdateUserDetails]= useState({
+    email:"",
+    name:"",
+    role:"",
+    _id:""
+  })
 
   const fetchAllUsers = async () => {
     const response = await getAllUsers();
@@ -31,7 +38,7 @@ const AllUsers = () => {
     <div>
       <table className='user-table w-full'>
         <thead>
-          <tr>
+          <tr className='bg-black text-white'>
           <th>Sr.</th>
           <th>Name</th>
           <th>Email</th>
@@ -51,8 +58,13 @@ const AllUsers = () => {
               <td>{el?.role}</td>
               <td>{moment(el?.createdAt).format('ll')}</td>
               <td >
-                <button>
-                <MdEdit className='text-2xl bg-green-200  p-1 rounded-full hover:bg-green-600 hover:text-white'  />
+                <button className='text-l bg-green-200  p-1 rounded-full hover:bg-green-600 hover:text-white'
+                onClick={()=>{
+
+              setUpdateUserDetails(el)
+                 
+                setopenUpedateRole(true)}  } >
+                <MdEdit/>
 
                 </button>
                 </td>
@@ -62,7 +74,20 @@ const AllUsers = () => {
        } 
         </tbody>
       </table>
-      <ChangeUserRole />
+
+      {
+        openUpdateRole &&(
+
+          <ChangeUserRole onClose={()=>setopenUpedateRole(false)}
+          name={updateUserDetails.name}
+          email={updateUserDetails.email}
+          role={updateUserDetails.role}
+          userId={updateUserDetails._id}
+          callfunction={fetchAllUsers}
+          />
+        )
+      }
+   
     </div>
   )
 }
