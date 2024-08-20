@@ -54,15 +54,15 @@ const Header = () => {
 
 
           <div className="relative  flex justify-center " onClick={() => setMenuDisplay(prev => !prev)}>
-              {
-                user?.profilePic ? (
-                  <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
-                ) :
-                  (
-                    <FaRegUserCircle size="2em" />
-                  )
-              }
-           
+            {
+              user?.profilePic ? (
+                <img src={user?.profilePic} className="w-10 h-10 rounded-full" alt={user?.name} />
+              ) :
+                (
+                  <FaRegUserCircle size="2em" />
+                )
+            }
+
 
             {
               menuDisplay && (
@@ -71,10 +71,10 @@ const Header = () => {
                   <nav>
                     {
                       user?.role === roles.ADMIN && (
-<Link to={"admin-panel"} className=" hidden whitespace-nowrap  md:block hover:bg-slate-100 p-2" >Admin Panel</Link>
+                        <Link to={"/admin-panel/all-products"} className=" hidden whitespace-nowrap  md:block hover:bg-slate-100 p-2" >Admin Panel</Link>
                       )
                     }
-                    
+
                   </nav>
 
                 </div>
