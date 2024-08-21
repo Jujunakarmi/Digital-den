@@ -3,6 +3,7 @@ import { IoClose } from "react-icons/io5";
 import productCategory from '../helper/productCategory';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from '../helper/uploadImage';
+import DisplayImage from './DisplayImage';
 
 
 const UploadProduct = (
@@ -18,8 +19,9 @@ const UploadProduct = (
         selling: "",
 
     })
-
-    const [uploadImageInput, setOpenUploadImageInput] = useState("")
+    
+    const[openFullScreenImage, setOpenFullScreenImage] = useState(false)
+    const [fullScreenImage, setFullScreenImage] = useState("")
 
     const handleOnchange = (e) => {
 
@@ -27,9 +29,6 @@ const UploadProduct = (
 
     const handleUploadProduct = async (e) => {
         const file = e.target.files[0]
-        setOpenUploadImageInput(file.name)
-        console.log('file', file)
-
         const uploadImageCloudinary = await uploadImage(file)
 
         setData((prev) => {
@@ -38,7 +37,7 @@ const UploadProduct = (
                 productImage: [...prev.productImage, uploadImageCloudinary.url]
             }
         })
-        console.log("upload-image", uploadImageCloudinary.url)
+        // console.log("upload-image", uploadImageCloudinary.url)
 
     }
     return (
@@ -114,7 +113,17 @@ const UploadProduct = (
                                     {
                                         data.productImage.map((el, index) => {
                                             return (
-                                                <img key={index} src={el} alt='image' width={80} height={80} className='bg-slate-100 border'></img>
+                                                <img key={index}
+                                                 src={el} 
+                                                 alt={el}
+                                                 width={80}
+                                                  height={80}
+                                                   className='bg-slate-100 border'
+                                                   onClick={() => {
+                                                    setOpenFullScreenImage(true)
+                                                    setFullScreenImage(el)
+                                                   }}
+                                                   />
 
                                             )
                                         })
@@ -136,8 +145,19 @@ const UploadProduct = (
 
             </div>
 
+            {/**Display full screen image */}
+
+            {
+                openFullScreenImage && (
+                    <DisplayImage onClose ={() => setOpenFullScreenImage(false)} imgUrl={fullScreenImage} />
+
+                )
+            }
+            
+
         </div>
     )
 }
 
 export default UploadProduct
+
