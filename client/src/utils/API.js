@@ -49,7 +49,17 @@ return fetch('http://localhost:3001/api/all-users', {
 });
 };
 export const updateUser =(data) => {
-return fetch('http://localhost:3001/api//update-user', {
+return fetch('http://localhost:3001/api/update-user', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify(data)
+});
+};
+export const uploadProduct =(data) => {
+return fetch('http://localhost:3001/api/upload-product', {
     method: 'POST',
     credentials: 'include',
     headers: {
