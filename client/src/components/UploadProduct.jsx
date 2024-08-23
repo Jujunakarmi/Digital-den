@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import productCategory from '../helper/productCategory';
@@ -80,6 +80,8 @@ const UploadProduct = (
         }
         
     }
+
+ 
 
     return (
         <div className='fixed w-full h-full top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-slate-200 bg-opacity-50'>

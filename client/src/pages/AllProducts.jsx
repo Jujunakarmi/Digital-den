@@ -1,8 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import UploadProduct from '../components/UploadProduct'
+import { getProduct } from '../utils/API'
+import AdminProductCard from '../components/AdminProductCard'
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false)
+  const [displayGetProduct, setDisplayGetProduct] = useState([])
+
+  const fetchGetProduct = async () => {
+    const dataApi = await getProduct();
+    const response = await dataApi.json();
+    setDisplayGetProduct(response?.data || [])
+     console.log("All-products",response)
+}
+
+useEffect(() => {
+    fetchGetProduct()
+},[])
 
   return (
     <div>
@@ -12,6 +26,21 @@ const AllProducts = () => {
         className='border-2 border-yellow-300 hover:bg-yellow-300 hover:text-white py-1 px-3 rounded-full transition-all'
         onClick={() => setOpenUploadProduct(true)}>Upload Product</button>
       </div>
+
+
+{/*All products */}
+ <div className='flex items-center gap-5 py-4'>
+  {
+  displayGetProduct.map((product,index) => {
+    return(
+      <AdminProductCard data ={product} key={index+"all Product+"} />
+  
+    )
+  })
+  }
+</div>
+
+
 
       {/* Product Table */}
       {
@@ -24,6 +53,7 @@ const AllProducts = () => {
       }
  
     </div>
+
   )
 }
 

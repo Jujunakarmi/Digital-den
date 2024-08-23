@@ -68,4 +68,14 @@ return fetch('http://localhost:3001/api/upload-product', {
     body: JSON.stringify(data)
 });
 };
+export const getProduct =(data) => {
+return fetch('http://localhost:3001/api/get-product', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify(data)
+});
+};
 
