@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import productCategory from '../helper/productCategory';
@@ -9,9 +9,9 @@ import { uploadProduct } from '../utils/API';
 import { toast } from 'react-hot-toast';
 
 
-const UploadProduct = (
-    { onClose }
-) => {
+const UploadProduct = ({ 
+    onClose 
+}) => {
     const [data, setData] = useState({
         productName: "",
         brandName: "",
