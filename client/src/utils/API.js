@@ -78,4 +78,14 @@ return fetch('http://localhost:3001/api/get-product', {
     body: JSON.stringify(data)
 });
 };
+export const updateProduct =(data) => {
+return fetch('http://localhost:3001/api/update-product', {
+    method: 'PUT',
+    credentials: 'include',
+    headers: {
+        'Content-Type':'application/json',
+    },
+    body: JSON.stringify(data)
+});
+};
 

@@ -10,7 +10,8 @@ import { toast } from 'react-hot-toast';
 
 
 const UploadProduct = ({ 
-    onClose 
+    onClose,
+    fetchData
 }) => {
     const [data, setData] = useState({
         productName: "",
@@ -74,6 +75,9 @@ const UploadProduct = ({
         if(response.success){
             toast.success(response.message)
             onClose()
+            fetchData()
+
+           
         }
         if(response.error){
             toast.error(response.message)

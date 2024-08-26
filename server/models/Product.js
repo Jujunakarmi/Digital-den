@@ -5,12 +5,12 @@ const productSchema = new Schema (
         productName: {
             type: String,
             required: true,
-            trimmed: true
+
         },
         brandName: {
             type: String,
             required: true,
-            trimmed: true
+          
         },
         category: {
             type: String,
@@ -20,10 +20,12 @@ const productSchema = new Schema (
             type: String
         },
         price: {
-            type: Number
+            type: Number,
+            min: 0,
         },
         sellingPrice: {
-            type: Number
+            type: Number,
+            min: 0,
         },
 
     },

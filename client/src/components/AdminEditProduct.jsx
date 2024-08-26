@@ -5,16 +5,18 @@ import productCategory from '../helper/productCategory';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from '../helper/uploadImage';
 import DisplayImage from './DisplayImage';
-import { uploadProduct } from '../utils/API';
+import { updateProduct } from '../utils/API';
 import { toast } from 'react-hot-toast';
 
 
 const AdminEditProduct = ({
     onClose,
-    productData
+    productData,
+    fetchData
 }) => {
 
     const [data, setData] = useState({
+        _id: productData?._id,
         productName: productData?.productName,
         brandName: productData?.brandName,
         category: productData?.category,
@@ -70,12 +72,13 @@ const AdminEditProduct = ({
         e.preventDefault()
         // console.log("data", data)
 
-        const dataApi = await uploadProduct(data)
+        const dataApi = await updateProduct(data)
         const response = await dataApi.json();
 
         if (response.success) {
             toast.success(response.message)
             onClose()
+            fetchData()
         }
         if (response.error) {
             toast.error(response.message)
@@ -235,7 +238,7 @@ const AdminEditProduct = ({
 
                     </textarea>
 
-                    <button className='px-3 py-2 bg-yellow-300 pb-4 hover:bg-yellow-400'>Upload Product</button>
+                    <button className='px-3 py-2 bg-yellow-300 pb-4 hover:bg-yellow-400'>Update Product</button>
 
                 </form>
 

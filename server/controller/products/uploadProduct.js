@@ -11,7 +11,7 @@ async function uploadProductController(req, res) {
         }
 
 
-        const uploadProduct = Product.create(req.body)
+        const uploadProduct = await Product.create(req.body)
         res.status(201).json({
             message: "Product Uploaded",
             success: true,

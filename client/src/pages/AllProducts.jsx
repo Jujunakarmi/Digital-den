@@ -11,7 +11,7 @@ const AllProducts = () => {
     const dataApi = await getProduct();
     const response = await dataApi.json();
     setDisplayGetProduct(response?.data || [])
-     console.log("All-products",response)
+    //  console.log("All-products",response)
 }
 
 useEffect(() => {
@@ -29,11 +29,11 @@ useEffect(() => {
 
 
 {/*All products */}
- <div className='flex items-center gap-5 py-4'>
+ <div className='flex flex-wrap gap-5 py-4'>
   {
   displayGetProduct.map((product,index) => {
     return(
-      <AdminProductCard data ={product} key={index+"all Product+"} />
+      <AdminProductCard data ={product} key={index+"all Product+"} fetchData={fetchGetProduct}/>
   
     )
   })
@@ -46,7 +46,8 @@ useEffect(() => {
       {
         openUploadProduct &&(
           <UploadProduct
-            onClose={() => setOpenUploadProduct(false)}
+            onClose={() => setOpenUploadProduct(false) }
+            fetchData={fetchGetProduct}
            />
         )
         
